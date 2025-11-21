@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTSPLAY TV - Entretenimento Premium Sem Limites</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #0a0a0a;
+            --accent: #0066ff;
+            --accent-hover: #0052cc;
+            --text: #ffffff;
+            --text-secondary: #b0b0b0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        h1 {
+            font-size: 3rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+        }
+        
+        .btn-large {
+            padding: 18px 40px;
+            font-size: 1.3rem;
+        }
+        
+        .btn-fixed {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 15px 25px;
+            font-size: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 102, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 102, 255, 0);
+            }
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--secondary);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 120px 0;
+        }
+        
+        .hero h1 {
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        /* Testimonial */
+        .testimonials {
+            background-color: var(--secondary);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--primary);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--text);
+        }
+        
+        /* Plans */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .plan-card {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .plan-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Comparison */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 50px;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table th {
+            background-color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .check {
+            color: #00ff00;
+        }
+        
+        .cross {
+            color: #ff0000;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            padding: 100px 0;
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .btn-fixed {
+                bottom: 10px;
+                right: 10px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Botão Fixo -->
+    <a href="https://wa.me/5585984377361" class="btn btn-fixed" target="_blank">
+        🔥 QUERO ATIVAR MEU TESTE GRÁTIS
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">MTS<span>PLAY</span> TV</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>A Revolução do Entretenimento Chegou</h1>
+            <p>Mais de 3.000 canais ao vivo, filmes, séries e conteúdo exclusivo em qualidade Full HD e 4K. Tudo sem travamentos e sem anúncios.</p>
+            <a href="#teste-gratis" class="btn btn-large">👉 QUERO TESTAR AGORA - 4 HORAS GRÁTIS</a>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section>
+        <div class="container">
+            <h2>O Melhor Conteúdo Para Você</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📺</div>
+                    <h3>Canais Ao Vivo</h3>
+                    <p>+3.000 canais nacionais e internacionais: esportes, filmes, notícias, infantil, variedades e premium.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>Filmes e Séries</h3>
+                    <p>Catálogo atualizado diariamente com lançamentos e clássicos em qualidade Full HD e 4K.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Compatibilidade Total</h3>
+                    <p>Funciona em Smart TV, celular, TV Box, notebook e PC. Uma assinatura, múltiplos dispositivos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Vantagens Exclusivas</h3>
+                    <p>Qualidade estável, servidores de alta performance, suporte rápido, sem anúncios e sem travamentos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section style="background-color: var(--secondary);">
+        <div class="container">
+            <h2>Por Que a MTSPLAY é Superior?</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>MTSPLAY TV</th>
+                        <th>Concorrentes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Estabilidade</td>
+                        <td class="check">✓ Máxima estabilidade</td>
+                        <td class="cross">✗ Instabilidade frequente</td>
+                    </tr>
+                    <tr>
+                        <td>Teste Grátis</td>
+                        <td class="check">✓ 4 horas liberadas</td>
+                        <td class="cross">✗ Sem teste ou limitado</td>
+                    </tr>
+                    <tr>
+                        <td>Organização</td>
+                        <td class="check">✓ Conteúdo organizado</td>
+                        <td class="cross">✗ Conteúdo desorganizado</td>
+                    </tr>
+                    <tr>
+                        <td>Tecnologia</td>
+                        <td class="check">✓ Anti-travamento</td>
+                        <td class="cross">✗ Travamentos constantes</td>
+                    </tr>
+                    <tr>
+                        <td>Interface</td>
+                        <td class="check">✓ Simples e intuitiva</td>
+                        <td class="cross">✗ Complexa e confusa</td>
+                    </tr>
+                    <tr>
+                        <td>Ativação</td>
+                        <td class="check">✓ Em segundos</td>
+                        <td class="cross">✗ Demorada</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Prova Social -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Aprovado Por Quem Exige Qualidade</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Finalmente encontrei um serviço estável! Há 6 meses sem travamentos. A MTSPLAY revolucionou meu entretenimento."</p>
+                    <p class="testimonial-author">Carlos Silva ⭐⭐⭐⭐⭐</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"O suporte é incrivelmente rápido. Resolveram meu problema em menos de 10 minutos. Recomendo demais!"</p>
+                    <p class="testimonial-author">Mariana Oliveira ⭐⭐⭐⭐⭐</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Conteúdo atualizado diariamente e qualidade impecável. Melhor custo-benefício do mercado atualmente."</p>
+                    <p class="testimonial-author">Ricardo Santos ⭐⭐⭐⭐⭐</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <h3>+12.000 usuários ativos satisfeitos</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teste Grátis -->
+    <section id="teste-gratis">
+        <div class="container">
+            <h2>TESTE GRATUITO – 4 HORAS LIBERADAS AGORA</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Clique no botão abaixo, escolha seu dispositivo e receba o app em segundos. Sem compromisso, sem cartão de crédito.</p>
+            <div style="text-align: center;">
+                <a href="https://wa.me/5585984377361" class="btn btn-large" target="_blank">👉 QUERO TESTAR AGORA</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos -->
+    <section style="background-color: var(--secondary);">
+        <div class="container">
+            <h2>Planos Que Cabem No Seu Bolso</h2>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3 class="plan-name">Plano Mensal</h3>
+                    <ul class="plan-features">
+                        <li>Acesso a todos os canais</li>
+                        <li>Filmes e séries ilimitados</li>
+                        <li>Suporte 24h</li>
+                        <li>3 dispositivos simultâneos</li>
+                    </ul>
+                    <a href="https://wa.me/5585984377361" class="btn" target="_blank">FALAR COM ATENDENTE</a>
+                </div>
+                <div class="plan-card">
+                    <h3 class="plan-name">Plano Trimestral</h3>
+                    <ul class="plan-features">
+                        <li>Acesso a todos os canais</li>
+                        <li>Filmes e séries ilimitados</li>
+                        <li>Suporte 24h</li>
+                        <li>5 dispositivos simultâneos</li>
+                        <li>Desconto especial</li>
+                    </ul>
+                    <a href="https://wa.me/5585984377361" class="btn" target="_blank">FALAR COM ATENDENTE</a>
+                </div>
+                <div class="plan-card">
+                    <h3 class="plan-name">Plano Semestral</h3>
+                    <ul class="plan-features">
+                        <li>Acesso a todos os canais</li>
+                        <li>Filmes e séries ilimitados</li>
+                        <li>Suporte 24h</li>
+                        <li>7 dispositivos simultâneos</li>
+                        <li>Desconto maior</li>
+                    </ul>
+                    <a href="https://wa.me/5585984377361" class="btn" target="_blank">FALAR COM ATENDENTE</a>
+                </div>
+                <div class="plan-card">
+                    <h3 class="plan-name">Plano Anual</h3>
+                    <ul class="plan-features">
+                        <li>Acesso a todos os canais</li>
+                        <li>Filmes e séries ilimitados</li>
+                        <li>Suporte 24h prioritário</li>
+                        <li>10 dispositivos simultâneos</li>
+                        <li>Melhor custo-benefício</li>
+                    </ul>
+                    <a href="https://wa.me/5585984377361" class="btn" target="_blank">FALAR COM ATENDENTE</a>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">Fale com o atendente e receba a melhor condição liberada hoje.</p>
+        </div>
+    </section>
+
+    <!-- Suporte e Segurança -->
+    <section>
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛟</div>
+                    <h3>Suporte Rápido</h3>
+                    <p>Nossa equipe está disponível 24 horas para resolver qualquer problema. Tutorial de instalação incluso.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Segurança Garantida</h3>
+                    <p>Ambiente 100% seguro, privacidade garantida e sem coleta de dados sensíveis. Sua tranquilidade em primeiro lugar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Você não precisa acreditar…<br>Basta testar.</h2>
+            <p>Clique no botão, ganhe 4h grátis e aproveite a melhor experiência da sua vida em entretenimento.</p>
+            <a href="https://wa.me/5585984377361" class="btn btn-large" target="_blank">👉 QUERO TESTAR AGORA</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Início</a>
+                <a href="#">Planos</a>
+                <a href="#">Suporte</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+            </div>
+            <p class="copyright">MTSPLAY TV — Entretenimento Sem Limites.<br>© 2023 Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
